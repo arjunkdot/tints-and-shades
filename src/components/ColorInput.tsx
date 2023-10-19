@@ -1,16 +1,22 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Colors } from "hexashades";
 import { MdOutlineShuffle } from "react-icons/md";
 
-interface ColorInputTypes{
-  setShadesAndTints: React.Dispatch<React.SetStateAction<any>>
+interface ColorInputTypes {
+  setShadesAndTints: React.Dispatch<React.SetStateAction<any>>;
 }
 const ColorInput = (props: ColorInputTypes) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const color = new Colors();
+
+  useEffect(() => {
+    props.setShadesAndTints(color.createColors("663399", 10, true));
+  }, []);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const inputValue = inputRef.current?.value;
-    const color = new Colors();
+
     const tintsAndShades = color.createColors(inputValue, 10, true);
     props.setShadesAndTints(tintsAndShades);
     console.log(tintsAndShades);
