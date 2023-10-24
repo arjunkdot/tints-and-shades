@@ -4,6 +4,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { MdContentCopy, MdCheck } from "react-icons/md";
 interface ColorBlockTypes {
   color: string;
+  isCurrentColor: boolean;
 }
 const ColorBlock = (props: ColorBlockTypes) => {
   const [isCopied, setIsCopied] = useState(false);
@@ -18,7 +19,7 @@ const ColorBlock = (props: ColorBlockTypes) => {
     <CopyToClipboard onCopy={handleCopy} text={props.color}>
       <div
         id={props.color}
-        className="w-full h-32 bg-blue-500 rounded-md flex flex-[1_1_200px] items-center justify-center transition-all duration-150 hover:shadow-sm hover:scale-[101%] hover:duration-150 cursor-pointer group"
+        className={`w-full h-auto min-h-[100px] flex flex-[1_1_200px] items-center justify-center cursor-pointer group ${props.isCurrentColor ? 'border-2 border-slate-200 outline-2 outline-black outline' : ''}`}
         style={{ background: props.color }}>
         <span className={`${(colorContrast('#000000', props.color) >= 4) ? 'text-black' : 'text-white'} opacity-100 duration-150 transition-opacity group-hover:hidden group-hover:duration-150 group-hover:transition-opacity group-hover:opacity-0`}>
           {props.color}

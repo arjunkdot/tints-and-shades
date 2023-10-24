@@ -1,10 +1,18 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import Header from "./Header";
-const Layout = ({ children }: React.PropsWithChildren) => {
+
+interface LayoutTypes{
+  setColors: React.Dispatch<React.SetStateAction<any>>;
+  setCurrentColor: React.Dispatch<React.SetStateAction<any>>;
+  currentColor: string;
+  children: ReactElement;
+}
+
+const Layout = (props: LayoutTypes) => {
   return (
-    <div className="container max-w-4xl mx-auto mt-24 px-10 font-fira antialiased">
-      <Header />
-      {children}
+    <div className="px-1 md:px-3 font-fira antialiased">
+      <Header currentColor={props.currentColor} setCurrentColor={props.setCurrentColor} setColors={props.setColors} />
+      {props.children}
     </div>
   );
 };

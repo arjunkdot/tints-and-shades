@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import ColorInput from "./../components/ColorInput";
 
-const Header = () => {
+interface HeaderTypes {
+  setColors: React.Dispatch<React.SetStateAction<any>>;
+  setCurrentColor: React.Dispatch<React.SetStateAction<any>>;
+  currentColor: string;
+}
+const Header = (props: HeaderTypes) => {
+
   return (
-    <header className="left-0 top-0 w-full mb-10 flex items-center">
-      <div>
-        <h1 className="text-xxl font-medium">
-          Tints & Shades
-        </h1>
-        <p className="text-md">
-          Easily generate tints & shades of a given color code.
-        </p>
-      </div>
+    <header className="left-0 top-0 w-full bg-white sticky py-3 z-10 flex items-center">
+      <ColorInput currentColor={props.currentColor} setCurrentColor={props.setCurrentColor} setColors={props.setColors} />
     </header>
   );
 };

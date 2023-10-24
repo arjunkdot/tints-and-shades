@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import ColorBlock from "./components/ColorBlock";
-import ColorInput from "./components/ColorInput";
 import Layout from "./layout/layout";
 
 function App() {
-  const [shadesAndTints, setShadesAndTints] = useState([]);
- 
+  const [colors, setColors] = useState([]);
+  const [currentColor, setCurrentColor] = useState("");
+  const middleItem = Math.floor(colors.length / 2);
   return (
-    <Layout>
-      <ColorInput setShadesAndTints={setShadesAndTints} />
-
-      <div className="flex flex-wrap gap-2 my-8">
-        {shadesAndTints.map((color, index) => {
-          return <ColorBlock color={color} key={index} />;
+    <Layout
+      currentColor={currentColor}
+      setCurrentColor={setCurrentColor}
+      setColors={setColors}>
+      <div className="flex flex-wrap items-stretch mt-1 mb-8 min-h-[calc(100vh_-_72px)]">
+        {colors.map((color, index) => {
+          return (
+            <ColorBlock
+              isCurrentColor={index === middleItem}
+              color={color}
+              key={index}
+            />
+          );
         })}
       </div>
     </Layout>
