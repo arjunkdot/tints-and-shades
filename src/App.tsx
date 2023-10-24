@@ -11,7 +11,7 @@ function App() {
       currentColor={currentColor}
       setCurrentColor={setCurrentColor}
       setColors={setColors}>
-      <div className="flex flex-wrap items-stretch mt-1 mb-8 min-h-[calc(100vh_-_72px)]">
+      <div className="flex flex-wrap items-stretch mt-1 min-h-[calc(100vh_-_85px)]">
         {colors.map((color, index) => {
           return (
             <ColorBlock

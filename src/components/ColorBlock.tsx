@@ -19,7 +19,7 @@ const ColorBlock = (props: ColorBlockTypes) => {
     <CopyToClipboard onCopy={handleCopy} text={props.color}>
       <div
         id={props.color}
-        className={`w-full h-auto min-h-[100px] flex flex-[1_1_200px] items-center justify-center cursor-pointer group ${props.isCurrentColor ? 'border-2 border-slate-200 outline-2 outline-black outline' : ''}`}
+        className={`w-full h-auto min-h-[60px] flex flex-[1_1_200px] items-center justify-center cursor-pointer group ${props.isCurrentColor ? 'border-2 border-slate-200 outline-2 outline-black outline' : ''}`}
         style={{ background: props.color }}>
         <span className={`${(colorContrast('#000000', props.color) >= 4) ? 'text-black' : 'text-white'} opacity-100 duration-150 transition-opacity group-hover:hidden group-hover:duration-150 group-hover:transition-opacity group-hover:opacity-0`}>
           {props.color}

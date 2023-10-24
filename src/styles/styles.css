@@ -706,6 +706,30 @@ video {
   min-height: calc(100vh - 72px);
 }
 
+.min-h-\[60px\] {
+  min-height: 60px;
+}
+
+.min-h-\[calc\(100vh_-_80px\)\] {
+  min-height: calc(100vh - 80px);
+}
+
+.min-h-\[calc\(100vh_-_75px\)\] {
+  min-height: calc(100vh - 75px);
+}
+
+.min-h-\[calc\(100vh_-_78px\)\] {
+  min-height: calc(100vh - 78px);
+}
+
+.min-h-\[calc\(100vh_-_77px\)\] {
+  min-height: calc(100vh - 77px);
+}
+
+.min-h-\[calc\(100vh_-_85px\)\] {
+  min-height: calc(100vh - 85px);
+}
+
 .w-10 {
   width: 2.5rem;
 }
