@@ -8,19 +8,37 @@ interface ColorInputTypes {
 }
 const ColorInput = (props: ColorInputTypes) => {
   const [error, setError] = useState(false);
-  // const [currentColor, setCurrentColor] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const percentageRef = useRef<HTMLInputElement>(null);
   const color = new Colors();
 
+  const randomHex = (size: number) =>
+    [...Array(size)]
+      .map(() => Math.floor(Math.random() * 16).toString(16))
+      .join("");
+
   useEffect(() => {
-    props.setColors(color.createColors("663399", 5, true));
-    props.setCurrentColor("663399")
+    const hex = randomHex(6);
+    props.setColors(color.createColors(hex, 5, true));
+    props.setCurrentColor(hex);
+    inputRef.current!.value = `#${hex}`;
   }, []);
+
+  const handleRandom = (e: React.FormEvent) => {
+    e.preventDefault();
+    const hex = randomHex(6);
+    props.setColors(
+      color.createColors(hex, +percentageRef.current!.value, true)
+    );
+    props.setCurrentColor(hex);
+
+    inputRef.current!.value = "";
+    inputRef.current!.value = `#${hex}`;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    //Reset
+    //Reset error
     setError(false);
     let inputValue = inputRef.current?.value;
     const percentageValue = +percentageRef.current!.value;
@@ -35,17 +53,18 @@ const ColorInput = (props: ColorInputTypes) => {
         true
       );
       props.setColors(tintsAndShades);
-      props.setCurrentColor(inputValue)
+      props.setCurrentColor(inputValue);
     } catch (e) {
       setError(true);
     }
   };
+
   return (
     <form
       onSubmit={handleSubmit}
       className={`w-full h-12 flex gap-2 items-center  border ${
         !error ? "border-slate-200 bg-white" : "border-red-600 bg-red-50"
-       } duration-150 ease-linear`}>
+      } duration-150 ease-linear`}>
       <div
         className={`h-full bg-slate-50 border-r ${
           !error ? "border-slate-200" : "border-red-600"
@@ -68,13 +87,18 @@ const ColorInput = (props: ColorInputTypes) => {
       <input
         type="text"
         className="px-2 w-full h-full font-medium bg-transparent focus:outline-none"
-        defaultValue="#663399"
+        defaultValue={`${props.currentColor}`}
         ref={inputRef}
         placeholder="Type in a color code"
       />
+      <button type="submit" className="invisible">
+        Submit
+      </button>
       <button
+        type="button"
         className="w-10 h-10 mx-auto absolute right-1 flex items-center justify-center duration-500 hover:bg-slate-100 hover:transition hover:duration-500 active:bg-slate-200 focus:bg-slate-200"
-        aria-label="Randomize">
+        aria-label="Randomize"
+        onClick={handleRandom}>
         <MdOutlineShuffle className="w-5 h-5" />
       </button>
     </form>
