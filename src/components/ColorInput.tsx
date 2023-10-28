@@ -32,7 +32,7 @@ const ColorInput = (props: ColorInputTypes) => {
 
   useEffect(() => {
     const hex = randomHex(6);
-    props.setColors(color.createColors(hex, 5, true));
+    props.setColors(color.createColors(hex, 10, true));
     props.setCurrentColor(hex);
     inputRef.current!.value = `#${hex}`;
   }, []);
@@ -53,7 +53,10 @@ const ColorInput = (props: ColorInputTypes) => {
     setShowColorPicker(!showColorPicker);
   };
 
-  const handleColorPicker = (color: ChromePicker.Colors) => {
+  type ColorPickerType = {
+    hex: string;
+  };
+  const handleColorPicker = (color: ColorPickerType) => {
     applyColors(color.hex.slice(1, 7));
   };
 
@@ -87,9 +90,9 @@ const ColorInput = (props: ColorInputTypes) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`w-full h-12 flex gap-2 items-center  border ${
+      className={`relative w-[calc(100vw_-_56px)] md:w-[calc(100vw_-_72px)] shrink-0 h-12 flex gap-2 items-center  border ${
         !error ? "border-slate-200 bg-white" : "border-red-600 bg-red-50"
-      } duration-150 ease-linear`}>
+      } border-r duration-150 ease-linear`}>
       <div
         className={`h-full bg-slate-50 border-r ${
           !error ? "border-slate-200" : "border-red-600"
@@ -97,7 +100,7 @@ const ColorInput = (props: ColorInputTypes) => {
        } inline-flex items-center px-2 duration-150 ease-linear `}>
         <div
           onClick={toggleColorPicker}
-          className="w-5 h-5 rounded-full inline-block mr-1 relative cursor-pointer"
+          className="w-5 h-5 rounded-full inline-block mr-1  cursor-pointer"
           style={{ backgroundColor: `#${props.currentColor}` }}></div>
         {showColorPicker && (
           <div ref={colorPickerContainerRef}>
@@ -117,7 +120,7 @@ const ColorInput = (props: ColorInputTypes) => {
           step="0.1"
           min="1"
           max="100"
-          defaultValue="5"
+          defaultValue="10"
           ref={percentageRef}
         />
       </div>

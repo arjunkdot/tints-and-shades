@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        fira: ["Fira Sans", "sans-serif"],
+        fira: ["IBM Plex Sans", "sans-serif"],
       },
       fontSize: {
         sm: "clamp(0.6rem, 0.1vw + 0.57rem, 0.66rem)",

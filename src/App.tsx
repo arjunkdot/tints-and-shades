@@ -5,13 +5,19 @@ import Layout from "./layout/layout";
 function App() {
   const [colors, setColors] = useState([]);
   const [currentColor, setCurrentColor] = useState("");
+  const [isolateColor, setIsolateColor] = useState(false);
   const middleItem = Math.floor(colors.length / 2);
   return (
     <Layout
       currentColor={currentColor}
       setCurrentColor={setCurrentColor}
-      setColors={setColors}>
-      <div className="flex flex-wrap items-stretch mt-1 min-h-[calc(100vh_-_85px)]">
+      setColors={setColors}
+      isolateColor={isolateColor}
+      setIsolateColor={setIsolateColor}>
+      <div
+        className={`flex flex-wrap items-stretch mt-1 min-h-[calc(100vh_-_85px)] ${
+          isolateColor ? "gap-1" : ""
+        }`}>
         {colors.map((color, index) => {
           return (
             <ColorBlock
