@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Colors } from "hexashades";
 import { MdOutlineShuffle } from "react-icons/md";
+import { ChromePicker } from "react-color";
 interface ColorInputTypes {
   setColors: React.Dispatch<React.SetStateAction<any>>;
   setCurrentColor: React.Dispatch<React.SetStateAction<any>>;
@@ -8,6 +9,7 @@ interface ColorInputTypes {
 }
 const ColorInput = (props: ColorInputTypes) => {
   const [error, setError] = useState(false);
+  const [showColorPicker, setShowColorPicker] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const percentageRef = useRef<HTMLInputElement>(null);
   const color = new Colors();
@@ -36,16 +38,28 @@ const ColorInput = (props: ColorInputTypes) => {
     inputRef.current!.value = `#${hex}`;
   };
 
+  const toggleColorPicker = () => {
+    setShowColorPicker(!showColorPicker);
+  };
+
+  const handleColorPicker = (color: ChromePicker.Colors) => {
+    applyColors(color.hex.slice(1, 7));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     //Reset error
     setError(false);
     let inputValue = inputRef.current?.value;
-    const percentageValue = +percentageRef.current!.value;
     // Check if the input contains hash, and remove it
     if (inputValue?.indexOf("#") !== -1) {
       inputValue = inputValue?.slice(1, inputValue.length);
     }
+    applyColors(inputValue);
+  };
+
+  const applyColors = (inputValue: string | undefined) => {
+    const percentageValue = +percentageRef.current!.value;
     try {
       const tintsAndShades = color.createColors(
         inputValue,
@@ -58,7 +72,6 @@ const ColorInput = (props: ColorInputTypes) => {
       setError(true);
     }
   };
-
   return (
     <form
       onSubmit={handleSubmit}
@@ -71,8 +84,17 @@ const ColorInput = (props: ColorInputTypes) => {
         }
        } inline-flex items-center px-2 duration-150 ease-linear `}>
         <div
-          className="w-5 h-5 rounded-full inline-block mr-1"
+          onClick={toggleColorPicker}
+          className="w-5 h-5 rounded-full inline-block mr-1 relative cursor-pointer"
           style={{ backgroundColor: `#${props.currentColor}` }}></div>
+        {showColorPicker && (
+          <ChromePicker
+            color={`#${props.currentColor}`}
+            disableAlpha={true}
+            onChangeComplete={handleColorPicker}
+            className="fixed top-16 left-5"
+          />
+        )}
         <span className="text-base ml-2 font-medium">%</span>
         <input
           className="h-full w-12 bg-transparent focus:outline-none ml-1 font-medium"
