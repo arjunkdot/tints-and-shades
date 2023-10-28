@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Colors } from "hexashades";
 import { MdOutlineShuffle } from "react-icons/md";
 import { ChromePicker } from "react-color";
+import useClickOutside from "../hooks/useClickOutside";
 interface ColorInputTypes {
   setColors: React.Dispatch<React.SetStateAction<any>>;
   setCurrentColor: React.Dispatch<React.SetStateAction<any>>;
@@ -12,6 +13,16 @@ const ColorInput = (props: ColorInputTypes) => {
   const [showColorPicker, setShowColorPicker] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const percentageRef = useRef<HTMLInputElement>(null);
+  const colorPickerContainerRef = useRef<HTMLDivElement>(null);
+
+  const isClickOutside = useClickOutside(colorPickerContainerRef);
+
+  useEffect(() => {
+    if (isClickOutside) {
+      setShowColorPicker(false);
+    }
+  }, [isClickOutside]);
+
   const color = new Colors();
 
   const randomHex = (size: number) =>
@@ -72,6 +83,7 @@ const ColorInput = (props: ColorInputTypes) => {
       setError(true);
     }
   };
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -88,12 +100,15 @@ const ColorInput = (props: ColorInputTypes) => {
           className="w-5 h-5 rounded-full inline-block mr-1 relative cursor-pointer"
           style={{ backgroundColor: `#${props.currentColor}` }}></div>
         {showColorPicker && (
-          <ChromePicker
-            color={`#${props.currentColor}`}
-            disableAlpha={true}
-            onChangeComplete={handleColorPicker}
-            className="fixed top-16 left-5"
-          />
+          <div ref={colorPickerContainerRef}>
+            <ChromePicker
+              color={`#${props.currentColor}`}
+              disableAlpha={true}
+              onChange={handleColorPicker}
+              // onChangeComplete={handleColorPicker}
+              className="fixed top-16 left-5"
+            />
+          </div>
         )}
         <span className="text-base ml-2 font-medium">%</span>
         <input
