@@ -7,6 +7,8 @@ interface LayoutTypes {
   setCurrentColor: React.Dispatch<React.SetStateAction<any>>;
   setIsolateColor: React.Dispatch<React.SetStateAction<boolean>>;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowInfo: React.Dispatch<React.SetStateAction<boolean>>;
+  showInfo: boolean;
   isolateColor: boolean;
   darkMode: boolean;
   currentColor: string;
@@ -35,6 +37,8 @@ const Layout = (props: LayoutTypes) => {
         isolateColor={props.isolateColor}
         darkMode={props.darkMode}
         setDarkMode={props.setDarkMode}
+        showInfo={props.showInfo}
+        setShowInfo={props.setShowInfo}
       />
       {props.children}
     </div>

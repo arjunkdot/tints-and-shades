@@ -7,6 +7,8 @@ import Cookies from "js-cookie";
 interface DropdownTypes {
   setIsolateColor: React.Dispatch<React.SetStateAction<boolean>>;
   setDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowInfo: React.Dispatch<React.SetStateAction<boolean>>;
+  showInfo: boolean;
   isolateColor: boolean;
   darkMode: boolean;
 }
@@ -23,6 +25,11 @@ const Dropdown = (props: DropdownTypes) => {
 
   const handleDropdownToggle = () => {
     setIsDropdownShown(!isDropdownShown);
+  };
+
+  const toggleInfo = () => {
+    props.setShowInfo(!props.showInfo);
+    setIsDropdownShown(false);
   };
 
   const toggleIsolation = () => {
@@ -62,7 +69,7 @@ const Dropdown = (props: DropdownTypes) => {
           <DropdownItem onClick={toggleIsolation}>
             Isolate colors {props.isolateColor && <MdCheck />}
           </DropdownItem>
-          <DropdownItem>About</DropdownItem>
+          <DropdownItem onClick={toggleInfo}>About</DropdownItem>
         </div>
       )}
     </div>
