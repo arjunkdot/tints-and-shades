@@ -1,10 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        fira: ["IBM Plex Sans", "sans-serif"],
+        plex: ["IBM Plex Sans", "sans-serif"],
       },
       fontSize: {
         sm: "clamp(0.6rem, 0.1vw + 0.57rem, 0.66rem)",

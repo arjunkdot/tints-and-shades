@@ -91,11 +91,13 @@ const ColorInput = (props: ColorInputTypes) => {
     <form
       onSubmit={handleSubmit}
       className={`relative w-[calc(100vw_-_56px)] md:w-[calc(100vw_-_72px)] shrink-0 h-12 flex gap-2 items-center  border ${
-        !error ? "border-slate-200 bg-white" : "border-red-600 bg-red-50"
+        !error
+          ? "border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800"
+          : "border-red-600 bg-red-50 dark:bg-red-950"
       } border-r duration-150 ease-linear`}>
       <div
-        className={`h-full bg-slate-50 border-r ${
-          !error ? "border-slate-200" : "border-red-600"
+        className={`h-full bg-slate-50 dark:bg-slate-700 border-r ${
+          !error ? "border-slate-200 dark:border-slate-800" : "border-red-600"
         }
        } inline-flex items-center px-2 duration-150 ease-linear `}>
         <div
@@ -108,14 +110,13 @@ const ColorInput = (props: ColorInputTypes) => {
               color={`#${props.currentColor}`}
               disableAlpha={true}
               onChange={handleColorPicker}
-              // onChangeComplete={handleColorPicker}
               className="fixed top-16 left-5"
             />
           </div>
         )}
-        <span className="text-base ml-2 font-medium">%</span>
+        <span className="text-base ml-2 font-medium dark:text-slate-50">%</span>
         <input
-          className="h-full w-12 bg-transparent focus:outline-none ml-1 font-medium"
+          className="h-full w-12 bg-transparent focus:outline-none ml-1 font-medium dark:text-slate-50"
           type="number"
           step="0.1"
           min="1"
@@ -126,7 +127,7 @@ const ColorInput = (props: ColorInputTypes) => {
       </div>
       <input
         type="text"
-        className="px-2 w-full h-full font-medium bg-transparent focus:outline-none"
+        className="px-2 w-full h-full font-medium bg-transparent focus:outline-none dark:text-slate-50"
         defaultValue={`${props.currentColor}`}
         ref={inputRef}
         placeholder="Type in a color code"
@@ -136,7 +137,7 @@ const ColorInput = (props: ColorInputTypes) => {
       </button>
       <button
         type="button"
-        className="w-10 h-10 mx-auto absolute right-1 flex items-center justify-center duration-500 hover:bg-slate-100 hover:transition hover:duration-500 active:bg-slate-200 focus:bg-slate-200"
+        className="w-10 h-10 mx-auto absolute right-1 flex items-center justify-center duration-500 dark:text-slate-50 hover:bg-slate-100 dark:hover:bg-slate-900 hover:transition hover:duration-500 active:bg-slate-200 focus:bg-slate-200 dark:active:bg-slate-900 dark:focus:bg-slate-900"
         aria-label="Randomize"
         onClick={handleRandom}>
         <MdOutlineShuffle className="w-5 h-5" />
