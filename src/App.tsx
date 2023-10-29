@@ -73,7 +73,7 @@ function App() {
                     should be generated. You can select any value from 1 to 100.
                   </li>
                   <li className="py-1">
-                    Hit 'Return' to generate the tints and shades. Use the
+                    Hit 'Return' to generate the tints and shades, or use the
                     'Shuffle' (
                     <MdOutlineShuffle className="inline" />) button to select a
                     random color.
