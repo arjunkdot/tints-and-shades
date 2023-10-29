@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+//@ts-ignore
 import colorContrast from 'color-contrast';
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { MdContentCopy, MdCheck } from "react-icons/md";

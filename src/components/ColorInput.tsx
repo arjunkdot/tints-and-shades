@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+//@ts-ignore
 import { Colors } from "hexashades";
 import { MdOutlineShuffle } from "react-icons/md";
 import { ChromePicker } from "react-color";
