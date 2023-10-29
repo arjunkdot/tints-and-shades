@@ -1,27 +1,24 @@
-# React + TypeScript + Vite
+# Tints & Shades
+This tool helps you generate tints and shades for a given hex color.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Usage
 
-Currently, two official plugins are available:
+1. Input a hex color code either by typing it in manually or by using the color picker available at the top panel.
+2. Choose a percentage value by which the tints and shades should be generated. You can select any value from 1 to 100.
+3. Hit 'Return' to generate the tints and shades. Use the 'Shuffle' button to select a random color.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Screenshot
 
-## Expanding the ESLint configuration
+![Screenshot](screenshot.jpg)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Credits
 
-- Configure the top-level `parserOptions` property like this:
+1. Tints & shades provided by [Hexashades](https://github.com/arjunkdot/hexashades).
+2. Icon courtesy [React Icons](https://react-icons.github.io/react-icons/).
+3. Copy to clipboard functionality by [react-copy-to-clipboard](https://github.com/nkbt/react-copy-to-clipboard/).
+4. Color contrast by [color-contrast](https://github.com/jescalan/color-contrast/).
+5. Color picker by [React Color](http://casesandberg.github.io/react-color/).
+6. Cookie management by [js-cookie](https://github.com/js-cookie/js-cookie#readme).
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### License
+MIT &copy; [arjunkdot](https://github.com/arjunkdot/)
