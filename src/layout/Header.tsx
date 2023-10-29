@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Dropdown from "../components/dropdown/Dropdown";
 import ColorInput from "./../components/ColorInput";
 

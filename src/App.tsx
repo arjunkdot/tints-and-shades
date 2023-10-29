@@ -4,7 +4,10 @@ import { MdOutlineShuffle, MdOpenInNew } from "react-icons/md";
 import Layout from "./layout/layout";
 import Cookies from "js-cookie";
 import Modal from "./components/Modal";
+
 function App() {
+ 
+
   const [colors, setColors] = useState([]);
   const [currentColor, setCurrentColor] = useState("");
   const [isolateColor, setIsolateColor] = useState(false);

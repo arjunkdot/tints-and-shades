@@ -3,12 +3,17 @@ import { Colors } from "hexashades";
 import { MdOutlineShuffle } from "react-icons/md";
 import { ChromePicker } from "react-color";
 import useClickOutside from "../hooks/useClickOutside";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+
 interface ColorInputTypes {
   setColors: React.Dispatch<React.SetStateAction<any>>;
   setCurrentColor: React.Dispatch<React.SetStateAction<any>>;
   currentColor: string;
 }
 const ColorInput = (props: ColorInputTypes) => {
+  const navigate = useNavigate();
+  const { urlHex } = useParams();
+  const { hash } = useLocation();
   const [error, setError] = useState(false);
   const [showColorPicker, setShowColorPicker] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -31,10 +36,16 @@ const ColorInput = (props: ColorInputTypes) => {
       .join("");
 
   useEffect(() => {
-    const hex = randomHex(6);
-    props.setColors(color.createColors(hex, 10, true));
-    props.setCurrentColor(hex);
-    inputRef.current!.value = `#${hex}`;
+    try {
+      let hexCode = hash?.slice(1, 7);
+      if (!urlHex && !hexCode) hexCode = randomHex(6);
+      props.setColors(color.createColors(hexCode, 10, true));
+      props.setCurrentColor(hexCode);
+      inputRef.current!.value = hexCode;
+      navigate(`/#${hexCode}`);
+    } catch (e) {
+      navigate("/404");
+    }
   }, []);
 
   const handleRandom = (e: React.FormEvent) => {
@@ -47,6 +58,7 @@ const ColorInput = (props: ColorInputTypes) => {
 
     inputRef.current!.value = "";
     inputRef.current!.value = `#${hex}`;
+    navigate(`/#${hex}`);
   };
 
   const toggleColorPicker = () => {
@@ -58,6 +70,12 @@ const ColorInput = (props: ColorInputTypes) => {
   };
   const handleColorPicker = (color: ColorPickerType) => {
     applyColors(color.hex.slice(1, 7));
+  };
+
+  const handleColorPickerOnComplete = (color: ColorPickerType) => {
+    const selectedHex = color.hex.slice(1, 7);
+    inputRef.current!.value = selectedHex;
+    navigate(`/#${selectedHex}`);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -110,6 +128,7 @@ const ColorInput = (props: ColorInputTypes) => {
               color={`#${props.currentColor}`}
               disableAlpha={true}
               onChange={handleColorPicker}
+              onChangeComplete={handleColorPickerOnComplete}
               className="fixed top-16 left-5"
             />
           </div>
