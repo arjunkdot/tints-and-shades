@@ -100,6 +100,7 @@ const ColorInput = (props: ColorInputTypes) => {
       );
       props.setColors(tintsAndShades);
       props.setCurrentColor(inputValue);
+      navigate(`/#${inputValue}`)
     } catch (e) {
       setError(true);
     }
