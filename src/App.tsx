@@ -109,7 +109,7 @@ function App() {
                   A list of additional tools &amp; technologies used can be
                   found{" "}
                   <a
-                    href="https://github.com/arjunkdot/shades-and-tints#credits"
+                    href="https://github.com/arjunkdot/tints-and-shades#credits"
                     target="_blank"
                     className="underline text-slate-600  dark:text-slate-400">
                     here <MdOpenInNew className="inline" />
@@ -121,7 +121,7 @@ function App() {
                 <ul className="md:flex md:items-center md:justify-between dark:text-slate-50">
                   <li className="md:mr-2 mb-2 md:mb-0">
                     <a
-                      href="https://github.com/arjunkdot/shades-and-tints/"
+                      href="https://github.com/arjunkdot/tints-and-shades/"
                       target="_blank"
                       className="underline text-slate-600 dark:text-slate-400">
                       GitHub <MdOpenInNew className="inline" />
