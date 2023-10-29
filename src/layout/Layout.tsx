@@ -26,9 +26,7 @@ const Layout = (props: LayoutTypes) => {
 
   return (
     <div
-      className={`px-1 md:px-3 font-plex antialiased ${
-        props.darkMode ? "dark" : ""
-      }`}>
+      className="px-1 md:px-3 font-plex antialiased">
       <Header
         currentColor={props.currentColor}
         setCurrentColor={props.setCurrentColor}

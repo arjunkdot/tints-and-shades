@@ -90,7 +90,7 @@ const ColorInput = (props: ColorInputTypes) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className={`relative w-[calc(100vw_-_56px)] md:w-[calc(100vw_-_72px)] shrink-0 h-12 flex gap-2 items-center  border ${
+      className={`relative w-[calc(100vw_-_105px)] md:w-[calc(100vw_-_132px)] shrink-0 h-12 flex gap-2 items-center  border ${
         !error
           ? "border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-800"
           : "border-red-600 bg-red-50 dark:bg-red-950"
