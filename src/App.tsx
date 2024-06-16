@@ -6,8 +6,6 @@ import Layout from "./layout/Layout";
 import Modal from "./components/Modal";
 
 function App() {
- 
-
   const [colors, setColors] = useState([]);
   const [currentColor, setCurrentColor] = useState("");
   const [isolateColor, setIsolateColor] = useState(false);
@@ -53,7 +51,7 @@ function App() {
               className={`${darkMode && "dark"}`}
               dismissMethod={setShowInfo}>
               <div className="border-b border-slate-300 dark:border-slate-600 dark:text-slate-50 w-full py-4">
-                <h1 className="text-lg font-plex">Tints + Shades</h1>
+                <h1 className="text-lg font-plex">getshades.co</h1>
               </div>
               <div className="font-plex py-4">
                 <p className="dark:text-slate-50">
